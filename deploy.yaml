@@ -6,15 +6,6 @@ metadata:
   name: dev
 
 ---
-apiVersion: security.openshift.io/v1
-kind: SecurityContextConstraints
-metadata:
-  name: anyuid
-users:
-  - system:serviceaccount:dev:default
-
-
----
 # ConfigMap for static HTML content
 apiVersion: v1
 kind: ConfigMap
