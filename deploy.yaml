@@ -72,31 +72,31 @@ spec:
 
 ---
 # Service to expose the portfolio app internally
-apiVersion: v1
-kind: Service
-metadata:
-  name: portfolio-service
-  namespace: dev
-spec:
-  selector:
-    app: portfolio
-  ports:
-  - port: 80
-    targetPort: 80
-    protocol: TCP
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: portfolio-service
+#  namespace: dev
+#spec:
+#  selector:
+#    app: portfolio
+#  ports:
+#  - port: 80
+#    targetPort: 80
+#    protocol: TCP
 
 ---
 # Route to expose the portfolio app externally
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: portfolio-route
-  namespace: dev
-spec:
-  to:
-    kind: Service
-    name: portfolio-service
-  port:
-    targetPort: 80
-  tls:
-    termination: edge  # Enables HTTPS
+#apiVersion: route.openshift.io/v1
+#kind: Route
+#metadata:
+#  name: portfolio-route
+#  namespace: dev
+#spec:
+#  to:
+#    kind: Service
+#    name: portfolio-service
+#  port:
+#    targetPort: 80
+#  tls:
+#    termination: edge  # Enables HTTPS
