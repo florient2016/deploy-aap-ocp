@@ -4,6 +4,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: dev
+
 ---
 apiVersion: security.openshift.io/v1
 kind: SecurityContextConstraints
@@ -11,6 +12,7 @@ metadata:
   name: anyuid
 users:
   - system:serviceaccount:dev:default
+
 
 ---
 # ConfigMap for static HTML content
@@ -48,7 +50,7 @@ metadata:
   labels:
     app: portfolio
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: portfolio
@@ -79,31 +81,32 @@ spec:
 
 ---
 # Service to expose the portfolio app internally
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: portfolio-service
-#  namespace: dev
-#spec:
-#  selector:
-#    app: portfolio
-#  ports:
-#  - port: 80
-#    targetPort: 80
-#    protocol: TCP
+apiVersion: v1
+kind: Service
+metadata:
+  name: portfolio-service
+  namespace: dev
+spec:
+  selector:
+    app: portfolio
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
 
 ---
 # Route to expose the portfolio app externally
-#apiVersion: route.openshift.io/v1
-#kind: Route
-#metadata:
-#  name: portfolio-route
-#  namespace: dev
-#spec:
-#  to:
-#    kind: Service
-#    name: portfolio-service
-#  port:
-#    targetPort: 80
-#  tls:
-#    termination: edge  # Enables HTTPS
+ apiVersion: route.openshift.io/v1
+ kind: Route
+ metadata:
+   name: portfolio-route
+   namespace: dev
+ spec:
+   host: portfolio.itssolutions.tech
+   to:
+     kind: Service
+     name: portfolio-service
+   port:
+     targetPort: 80
+   tls:
+     termination: edge  # Enables HTTPS
