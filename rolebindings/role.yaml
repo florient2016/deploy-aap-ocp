@@ -5,5 +5,8 @@ metadata:
   namespace: dev
 rules:
   - apiGroups: ["apps"]
-    resources: ["deployments, replicasets, Services, routes, namespaces, pods"]
+    resources: ["deployments"]
+    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods", "services", "secrets", "configmaps"]
     verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
