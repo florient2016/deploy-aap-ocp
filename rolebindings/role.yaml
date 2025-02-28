@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-deployment-manager
+  namespace: dev
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments, replicasets, Services, routes, namespaces, pods"]
+    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
