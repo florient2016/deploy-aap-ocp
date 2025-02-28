@@ -1,0 +1,6 @@
+---
+# Namespace for the portfolio application
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
