@@ -1,0 +1,18 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: dev-deployment-manager
+  namespace: dev
+rules:
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["pods", "services", "secrets", "configmaps","serviceaccounts"]
+    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+  - apiGroups: ["route.openshift.io"]
+    resources: ["routes","routes/custom-host"]
+    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+  - apiGroups: ["security.openshift.io"]
+    resources: ["securitycontextconstraints"]
+    verbs: ["get", "list", "update", "patch", "escalate"]
