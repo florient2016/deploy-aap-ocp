@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-deployment-manager
-  namespace: sealed-secrets
+  namespace: kube-system
 rules:
 - apiGroups: ["*"]  # All API groups (core, apps, extensions, etc.)
   resources: ["*"]  # All resources (pods, services, deployments, etc.)
