@@ -2,23 +2,26 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: argocd-deployment-manager
-  #namespace: sealed-secrets
+  namespace: sealed-secrets
 rules:
-  - apiGroups: ["apps"]
-    resources: ["deployments"]
-    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
-  - apiGroups: [""]
-    resources: ["pods", "services", "secrets", "configmaps","serviceaccounts"]
-    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
-  - apiGroups: ["route.openshift.io"]
-    resources: ["routes","routes/custom-host"]
-    verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
-  - apiGroups: ["security.openshift.io"]
-    resources: ["securitycontextconstraints"]
-    verbs: ["get", "list", "update", "patch", "escalate"]
-  - apiGroups: ["apiextensions.k8s.io"]
-    resources: ["customresourcedefinitions"]
-    verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
-  - apiGroups: ["bitnami.com"]
-    resources: ["sealedsecrets"]
-    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["*"]  # All API groups (core, apps, extensions, etc.)
+  resources: ["*"]  # All resources (pods, services, deployments, etc.)
+  verbs: ["*"]      # All verbs (get, list, create, update, patch, delete, etc.)
+ #- apiGroups: ["apps"]
+ #  resources: ["deployments"]
+ #  verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+ #- apiGroups: [""]
+ #  resources: ["pods", "services", "secrets", "configmaps","serviceaccounts"]
+ #  verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+ #- apiGroups: ["route.openshift.io"]
+ #  resources: ["routes","routes/custom-host"]
+ #  verbs: ["create", "update", "patch", "delete", "get", "list", "watch"]
+ #- apiGroups: ["security.openshift.io"]
+ #  resources: ["securitycontextconstraints"]
+ #  verbs: ["get", "list", "update", "patch", "escalate"]
+ #- apiGroups: ["apiextensions.k8s.io"]
+ #  resources: ["customresourcedefinitions"]
+ #  verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
+ #- apiGroups: ["bitnami.com"]
+ #  resources: ["sealedsecrets"]
+ #  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
