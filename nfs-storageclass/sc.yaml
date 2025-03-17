@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-storage
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"  # Optional: makes it the default StorageClass
+provisioner: nfs-provisioner  # Must match the PROVISIONER_NAME in deploy.yaml
+parameters:
+  #server: 10.10.0.2  # NFS server IP
+  archiveOnDelete: "false"  # Deletes data when PVC is deleted
