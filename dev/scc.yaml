@@ -1,0 +1,15 @@
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: nginx-root-scc
+allowPrivilegedContainer: false
+runAsUser:
+  type: RunAsAny
+seLinuxContext:
+  type: MustRunAs
+fsGroup:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+users:
+- system:serviceaccount:dev:default
