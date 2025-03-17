@@ -10,19 +10,29 @@ metadata:
 data:
   index.html: |
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
     <head>
-      <title>My Portfolio</title>
-      <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
-        h1 { color: #333; }
-        p { font-size: 18px; }
-      </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Komlan Florient Dogbe - Red Hat Architect</title>
+        <meta name="description" content="Professional profile of Komlan Florient Dogbe, Red Hat Architect">
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-      <h1>Welcome to My Portfolio</h1>
-      <p>This is a static portfolio site deployed on OpenShift using Nginx and managed by ArgoCD.</p>
-      <p>Created by Komlan</p>
+        <header>
+            <h1>Komlan Florient Dogbe</h1>
+            <h2>Red Hat Architect</h2>
+        </header>
+        
+        <section>
+            <p>Welcome to my personal website. I specialize in cloud architecture, DevOps, and Red Hat solutions.</p>
+            <p>Feel free to connect with me on LinkedIn:</p>
+            <p><a href="https://www.linkedin.com/in/komlan-florient-dogbe-redhat-architect/" target="_blank">My LinkedIn Profile</a></p>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Komlan Florient Dogbe. All Rights Reserved.</p>
+        </footer>
     </body>
     </html>
 
