@@ -1,15 +1,12 @@
-apiVersion: security.openshift.io/v1
-kind: SecurityContextConstraints
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
 metadata:
-  name: nginx-root-scc
-allowPrivilegedContainer: false
-runAsUser:
-  type: RunAsAny
-seLinuxContext:
-  type: MustRunAs
-fsGroup:
-  type: MustRunAs
-supplementalGroups:
-  type: RunAsAny
-users:
-- system:serviceaccount:dev:default
+  name: anyuid-default-dev  # Unique name for the binding
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: dev
+roleRef:
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid  # References the anyuid SCC
+  apiGroup: rbac.authorization.k8s.io
