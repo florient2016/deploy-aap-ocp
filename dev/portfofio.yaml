@@ -1,0 +1,71 @@
+---
+# Deployment for the Nginx-based website app
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+  namespace: dev
+  labels:
+    app: website
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+      - name: nginx
+        #image: docker.io/library/nginx:latest  # Use nginx:latest or a custom image
+        image: docker.io/komlan2019/website:v1  # Use nginx:latest or a custom image
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+    #    volumeMounts:
+    #    - name: html-content
+    #      mountPath: /usr/share/nginx/html
+    #  volumes:
+    #  - name: html-content
+    #    configMap:
+    #      name: website-html
+
+---
+# Service to expose the website app internally
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service
+  namespace: dev
+spec:
+  selector:
+    app: website
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+
+---
+# Route to expose the website app externally
+ apiVersion: route.openshift.io/v1
+ kind: Route
+ metadata:
+   name: website-route
+   namespace: dev
+ spec:
+   #host: website.itssolutions.tech
+   to:
+     kind: Service
+     name: website-service
+   port:
+     targetPort: 80
+   tls:
+     termination: edge  # Enables HTTPS
