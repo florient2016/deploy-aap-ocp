@@ -19,8 +19,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        #image: docker.io/library/nginx:latest  # Use nginx:latest or a custom image
-        image: docker.io/komlan2019/website:v1  # Use nginx:latest or a custom image
+        image: docker.io/komlan2019/portfolio:v1  # Use nginx:latest or a custom image
         ports:
         - containerPort: 80
         resources:
