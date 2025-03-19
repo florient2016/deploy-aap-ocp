@@ -60,7 +60,7 @@ spec:
    name: website-route
    namespace: dev
  spec:
-   #host: website.itssolutions.tech
+   host: portfolio.itssolutions.tech
    to:
      kind: Service
      name: website-service
