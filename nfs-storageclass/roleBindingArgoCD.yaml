@@ -11,3 +11,18 @@ roleRef:
   kind: Role
   name: nfs-provisioner-manager
   apiGroup: rbac.authorization.k8s.io
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: use-scc-hostmount-anyuid-binding
+  namespace: nfs-provisioner
+subjects:
+  - kind: ServiceAccount
+    name: nfs-client-provisioner
+    namespace: nfs-provisioner
+roleRef:
+  kind: Role
+  name: use-scc-hostmount-anyuid
+  apiGroup: rbac.authorization.k8s.io

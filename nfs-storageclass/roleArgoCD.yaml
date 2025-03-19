@@ -13,3 +13,15 @@ rules:
   - apiGroups: ["security.openshift.io"]
     resources: ["securitycontextconstraints"]
     verbs: ["create", "delete", "get", "list", "patch", "update", "watch", "escalate"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: use-scc-hostmount-anyuid
+  namespace: nfs-provisioner
+rules:
+  - apiGroups: [""]
+    resources: ["securitycontextconstraints"]
+    resourceNames: ["hostmount-anyuid"]
+    verbs: ["use"]
