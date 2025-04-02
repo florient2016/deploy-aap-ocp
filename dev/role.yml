@@ -16,3 +16,20 @@ rules:
   - apiGroups: ["security.openshift.io"]
     resources: ["securitycontextconstraints"]
     verbs: ["create", "delete", "get", "list", "patch", "update", "watch", "escalate"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: privileged-scc-role
+  namespace: dev
+rules:
+- apiGroups:
+  - security.openshift.io
+  resourceNames:
+  - privileged
+  - anyuid
+  resources:
+  - securitycontextconstraints
+  verbs:
+  - use
