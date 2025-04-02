@@ -27,5 +27,5 @@ roleRef:
   name: privileged-scc-role
 subjects:
 - kind: ServiceAccount
-  name: default
+  name: nfs-client-provisioner
   namespace: nfs-provisioner
